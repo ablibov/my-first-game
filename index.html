@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="card">
+    <h1 id="result">Жмите чтобы играть!</h1>
+    <p id="balance">Баланс: 100</p>
+    <button id="playerBtn">Играть</button>
+  </div>
+
+  <script>
+    const GAME_COST = 10;
+    const WIN_CHANCE = 0.3;
+    const WIN_REWARD = 50;
+
+    let balance = 100;
+
+    document.getElementById("playerBtn").onclick = () => {
+      if (balance < GAME_COST) {
+        result.textContent = "Недостаточно шекелей🤑";
+        return;
+      }
+
+      balance -= GAME_COST;
+      const win = Math.random() < WIN_CHANCE;
+
+      if (win) {
+        balance += WIN_REWARD;
+        result.textContent = "🎉 WIN!";
+      } else {
+        result.textContent = "☠️ LOSE!";
+      }
+
+      balanceEl.textContent = "Баланс: " + balance;
+    };
+
+    const result = document.getElementById("result");
+    const balanceEl = document.getElementById("balance");
+  </script>
+
+</body>
+</html>
